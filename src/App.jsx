@@ -33,23 +33,26 @@ const App = () => {
   const handleSwitcher = () => setIsOldWay(!isOldWay);
 
   return (
-    <div className="max-w-md p-8 mx-auto bg-white rounded-md shadow-md mt-52">
-      <Switcher label={isOldWay ? 'Old Way' : 'New Way'} checked={isOldWay} onChange={handleSwitcher} />
+    <div className="max-w-md mx-auto bg-white rounded-md shadow-xl mt-52">
+      <h1 className='p-10 pt-4 font-bold text-center '>Infinity | print-sticker V2</h1>
+      <div className="p-8">
+        <Switcher label={isOldWay ? 'Old Way' : 'New Way'} checked={isOldWay} onChange={handleSwitcher} />
 
-      <div className="mt-4">
-        {isOldWay ? (
-          <OldWay
-            zplCodeOne={zplCodeOne}
-            zplCodeTwo={zplCodeTwo}
-            zplCodeThree={zplCodeThree}
-            zplCodeFour={zplCodeFour} />
-        ) : (
-          <NewWay
-            zplCodeOne={zplCodeOne}
-            zplCodeTwo={zplCodeTwo}
-            zplCodeThree={zplCodeThree}
-            zplCodeFour={zplCodeFour} />
-        )}
+        <div className="mt-4">
+          {isOldWay ? (
+            <OldWay
+              zplCodeOne={zplCodeOne}
+              zplCodeTwo={zplCodeTwo}
+              zplCodeThree={zplCodeThree}
+              zplCodeFour={zplCodeFour} />
+          ) : (
+            <NewWay
+              zplCodeOne={zplCodeOne}
+              zplCodeTwo={zplCodeTwo}
+              zplCodeThree={zplCodeThree}
+              zplCodeFour={zplCodeFour} />
+          )}
+        </div>
       </div>
     </div>
   );
