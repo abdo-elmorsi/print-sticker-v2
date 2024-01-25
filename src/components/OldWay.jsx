@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from '@/components';
 import { browserPrint } from '@/utils';
 
-function OldWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
+function OldWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour, zplCodeFive }) {
     const _printByTheOldWay = async (zplCode) => {
         browserPrint.printBarcode(zplCode);
     };
@@ -30,6 +30,9 @@ function OldWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
             <Button onClick={() => _printByTheOldWay(zplCodeFour)} className="text-white bg-blue-500 hover:bg-blue-600">
                 Print 4
             </Button>
+            <Button onClick={() => _printByTheOldWay(zplCodeFive)} className="text-white bg-blue-500 hover:bg-blue-600">
+                Print 5
+            </Button>
         </div>
     );
 }
@@ -39,6 +42,7 @@ OldWay.propTypes = {
     zplCodeTwo: PropTypes.string.isRequired,
     zplCodeThree: PropTypes.string.isRequired,
     zplCodeFour: PropTypes.string.isRequired,
+    zplCodeFive: PropTypes.string.isRequired,
 };
 
 export default OldWay;

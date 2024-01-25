@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Button } from '@/components';
 import { qzTray } from '@/utils';
 
-function NewWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
+function NewWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour, zplCodeFive }) {
     const _printByTheNewWay = async (zplCode) => {
         await qzTray(zplCode);
     };
@@ -21,6 +21,9 @@ function NewWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
             <Button onClick={() => _printByTheNewWay(zplCodeFour)} className="text-white bg-green-500 hover:bg-green-600">
                 Print 4
             </Button>
+            <Button onClick={() => _printByTheNewWay(zplCodeFive)} className="text-white bg-green-500 hover:bg-green-600">
+                Print 4
+            </Button>
         </div>
     );
 }
@@ -30,6 +33,7 @@ NewWay.propTypes = {
     zplCodeTwo: PropTypes.string.isRequired,
     zplCodeThree: PropTypes.string.isRequired,
     zplCodeFour: PropTypes.string.isRequired,
+    zplCodeFive: PropTypes.string.isRequired,
 };
 
 export default NewWay;
