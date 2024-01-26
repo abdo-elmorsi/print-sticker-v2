@@ -22,7 +22,7 @@ function NewWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour, zplCodeFive
                 Print 4
             </Button>
             <Button onClick={() => _printByTheNewWay(zplCodeFive)} className="text-white bg-green-500 hover:bg-green-600">
-                Print 4
+                Print 5
             </Button>
         </div>
     );
