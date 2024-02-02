@@ -4,27 +4,27 @@ import { OldWay, NewWay, Switcher } from '@/components';
 const zplCodeOne = `^XA
 ^CW2,E:ARI001.FNT
 ^CI28
-^FO0,0^A@N,24,24,E:ARI001.FNT^FDمرحبا^FS
-^FO20,20^A@N,24,24^FDHello^FS
+^FO0,50^A@N,24,24,E:ARI001.FNT^FDمرحبا^FS
+^FO20,70^A@N,24,24^FDHello^FS
 ^XZ`;
 
 const zplCodeTwo = `^XA
 ^CI28
 ^CW1,E:ARI001.FNT
-^FO0,0^A@N,24,24,E:ARI001.FNT^FDمرحبا^FS
-^FO20,20^A@N,24,24^FDHello^FS
+^FO0,50^A@N,24,24,E:ARI001.FNT^FDمرحبا^FS
+^FO20,70^A@N,24,24^FDHello^FS
 ^XZ`;
 
 const zplCodeThree = `^XA
 ^CI28
-^FO0,0^A@N,24,24,E:TT0003M_.FNT^FDمرحبا^FS
-^FO20,20^A@N,24,24^FDHello^FS
+^FO0,50^A@N,24,24,E:TT0003M_.FNT^FDمرحبا^FS
+^FO20,70^A@N,24,24^FDHello^FS
 ^XZ`;
 
 const zplCodeFour = `^XA
 ^CI28
 ^CWZ,E:TT0003M_.TTF
-^FT20,20^PA0,1,1,1^AZN,40^FDFDمرحبا^FS
+^FT0,50^PA0,1,1,1^AZN,40^FDFDمرحبا^FS
 ^XZ`;
 
 const zplCodeFive = `^XA
