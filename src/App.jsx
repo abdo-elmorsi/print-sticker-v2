@@ -23,11 +23,14 @@ const zplCodeThree = `^XA
 
 const zplCodeFour = `^XA
 ^CI28
-^FO50,50^A@N,24,24,E:TT0003M.TTF^FDمرحبا^FS
-^FO50,100^A@N,24,24^FDHello^FS
+^CWZ,E:TT0003M_.TTF
+^FT70,200^PA0,1,1,1^AZN,40^FDFDمرحبا^FS
 ^XZ`;
 
 const zplCodeFive = `^XA
+^FO50,50^A@N,30,30,E:TT0003M_.TTF^FDHello - 1^FS
+^FO50,100^A@N,30,30,E:TT0003M_.TTF^FDمرحبا^FS
+
 ^FO50,50^A@N,30,30,E:SIMSUN.FNT^FDHello - 1^FS
 ^FO50,100^A@N,30,30,E:SIMSUN.FNT^FDمرحبا^FS
 
@@ -74,7 +77,7 @@ const App = () => {
               zplCodeTwo={zplCodeTwo}
               zplCodeThree={zplCodeThree}
               zplCodeFour={zplCodeFour}
-              zplCodeFive={zplCodeFour} />
+              zplCodeFive={zplCodeFive} />
           ) : (
             <NewWay
               zplCodeOne={zplCodeOne}

@@ -1,42 +1,24 @@
 import qz from 'qz-tray';
 
-let isQzTrayInitialized = false;
-
-const initializeQzTray = async () => {
-    if (!isQzTrayInitialized) {
-        try {
-            await qz.websocket.connect();
-            console.log('qz-tray is initialized');
-            isQzTrayInitialized = true;
-        } catch (error) {
-            console.error('Error initializing qz-tray:', error);
-        }
-    }
-};
 
 const QzTray = async (zplCode) => {
     try {
-        // Initialize qz-tray on-demand
-        await initializeQzTray();
-
-        // Find available printers
-        const printers = await qz.printers.find();
-
-        if (printers.length === 0) {
-            throw new Error('No printers found');
+        if (!qz.websocket.isActive()) {
+            // Initialize qz-tray on-demand
+            await qz.websocket.connect({ retries: 1, delay: 15 });
         }
 
-        // Use the default printer (the first printer in the list)
-        const selectedPrinter = printers[0];
+        // Find default printer
+        const printer = await qz.printers.getDefault();
 
-        // Set the encoding to UTF-8 to support Arabic and English characters
-        await qz.config.setPrinter(selectedPrinter, { encoding: 'UTF-8' });
+        if (!printer) {
+            throw new Error('No default printer found');
+        }
+
+        const config = await qz.configs.create(printer, { encoding: 'UTF-8' });
 
         // Print the ZPL code to the selected printer
-        await qz.printers.print(selectedPrinter, [
-            // Use 'raw' format for ZPL code
-            { type: 'raw', format: 'plain', data: zplCode },
-        ]);
+        await qz.print(config, [zplCode]);
 
         console.log('Label printed successfully');
     } catch (error) {
