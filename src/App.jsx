@@ -2,17 +2,13 @@ import { useState } from 'react';
 import { OldWay, NewWay, Switcher } from '@/components';
 
 const zplCodeOne = `^XA
-^CW2,E:ARI001.FNT
 ^CI28
-^FO250,20^A@N,20,20,E:ARI001.FNT^FDمرحبا^FS
-^FO250,80^A@N,20,20^FDHello^FS
+^FO250,20^A@N,30,30^FDمرحبا^FS
+^FO250,80^A@N,30,30^FDHello^FS
 ^XZ`;
-
 const zplCodeTwo = `^XA
-^CI28
-^CW1,E:ARI001.FNT
-^FO250,20^A@N,20,20,E:ARI001.FNT^FDمرحبا^FS
-^FO250,80^A@N,20,20^FDHello^FS
+^FO250,20^A@N,30,30,E:TT0003M_.FNT^FDمرحبا^FS
+^FO250,80^A@N,30,30^FDHello^FS
 ^XZ`;
 
 const zplCodeThree = `^XA
