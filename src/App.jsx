@@ -4,32 +4,32 @@ import { OldWay, NewWay, Switcher } from '@/components';
 const zplCodeOne = `^XA
 ^CW2,E:ARI001.FNT
 ^CI28
-^FO50,50^A@N,24,24,E:ARI001.FNT^FDمرحبا^FS
-^FO50,100^A@N,24,24^FDHello^FS
+^FO10,10^A@N,24,24,E:ARI001.FNT^FDمرحبا^FS
+^FO30,50^A@N,24,24^FDHello^FS
 ^XZ`;
 
 const zplCodeTwo = `^XA
 ^CI28
 ^CW1,E:ARI001.FNT
-^FO50,50^A@N,24,24,E:ARI001.FNT^FDمرحبا^FS
-^FO50,100^A@N,24,24^FDHello^FS
+^FO10,10^A@N,24,24,E:ARI001.FNT^FDمرحبا^FS
+^FO30,50^A@N,24,24^FDHello^FS
 ^XZ`;
 
 const zplCodeThree = `^XA
 ^CI28
-^FO50,50^A@N,24,24,E:TT0003M_.FNT^FDمرحبا^FS
-^FO50,100^A@N,24,24^FDHello^FS
+^FO10,10^A@N,24,24,E:TT0003M_.FNT^FDمرحبا^FS
+^FO30,50^A@N,24,24^FDHello^FS
 ^XZ`;
 
 const zplCodeFour = `^XA
 ^CI28
 ^CWZ,E:TT0003M_.TTF
-^FT70,200^PA0,1,1,1^AZN,40^FDFDمرحبا^FS
+^FT10,10^PA0,1,1,1^AZN,40^FDFDمرحبا^FS
 ^XZ`;
 
 const zplCodeFive = `^XA
-^FO50,50^A@N,30,30,E:TT0003M_.TTF^FDHello - 1^FS
-^FO50,100^A@N,30,30,E:TT0003M_.TTF^FDمرحبا^FS
+^FO10,10^A@N,30,30,E:TT0003M_.TTF^FDHello - 1^FS
+^FO30,50^A@N,30,30,E:TT0003M_.TTF^FDمرحبا^FS
 
 ^FO50,50^A@N,30,30,E:SIMSUN.FNT^FDHello - 1^FS
 ^FO50,100^A@N,30,30,E:SIMSUN.FNT^FDمرحبا^FS
