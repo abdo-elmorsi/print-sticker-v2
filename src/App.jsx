@@ -17,8 +17,8 @@ const zplCodeTwo = `^XA
 
 const zplCodeThree = `^XA
 ^CI28
-^FO350,30^A@N,30,30,E:TT0003M_.FNT^FDمرحبا^FS
-^FO350,50^A@N,30,30^FDHello^FS
+^FO350,20^A@N,30,30,E:TT0003M_.FNT^FDمرحبا^FS
+^FO250,100^A@N,30,30^FDHello^FS
 ^XZ`;
 
 const zplCodeFour = `^XA
