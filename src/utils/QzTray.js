@@ -10,13 +10,13 @@ const QzTray = async (zplCode) => {
 
         // Find default printer
         const printer = await qz.printers.getDefault();
-
+        console.log({ printer });
         if (!printer) {
             throw new Error('No default printer found');
         }
 
         const config = await qz.configs.create(printer, { encoding: 'UTF-8' });
-
+        console.log({ config });
         // Print the ZPL code to the selected printer
         await qz.print(config, [zplCode]);
 
