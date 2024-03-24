@@ -3,7 +3,7 @@ import { Button, Switcher } from '@/components';
 import { qzTray, qzTrayTwo } from '@/utils';
 import { useState } from 'react';
 
-function NewWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
+function NewWay({ forImage, zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
     const [isOldWay, setIsOldWay] = useState(true);
     const handleSwitcher = () => setIsOldWay(!isOldWay);
 
@@ -24,6 +24,9 @@ function NewWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
 
 
             <div className='flex items-center justify-start gap-4 mt-8'>
+                <Button onClick={() => _printByTheNewWay(forImage)} className="text-white bg-green-500 hover:bg-green-600">
+                    image
+                </Button>
                 <Button onClick={() => _printByTheNewWay(zplCodeOne)} className="text-white bg-green-500 hover:bg-green-600">
                     Print 1
                 </Button>
@@ -42,6 +45,7 @@ function NewWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
 }
 
 NewWay.propTypes = {
+    forImage: PropTypes.string.isRequired,
     zplCodeOne: PropTypes.string.isRequired,
     zplCodeTwo: PropTypes.string.isRequired,
     zplCodeThree: PropTypes.string.isRequired,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from '@/components';
 import { browserPrint } from '@/utils';
 
-function OldWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
+function OldWay({ forImage, zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
     const _printByTheOldWay = async (zplCode) => {
         browserPrint.printBarcode(zplCode);
     };
@@ -18,6 +18,9 @@ function OldWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
 
     return (
         <div className='flex items-center justify-start gap-4'>
+            <Button onClick={() => _printByTheOldWay(forImage)} className="text-white bg-blue-500 hover:bg-blue-600">
+                image
+            </Button>
             <Button onClick={() => _printByTheOldWay(zplCodeOne)} className="text-white bg-blue-500 hover:bg-blue-600">
                 Print 1
             </Button>
@@ -35,6 +38,7 @@ function OldWay({ zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
 }
 
 OldWay.propTypes = {
+    forImage: PropTypes.string.isRequired,
     zplCodeOne: PropTypes.string.isRequired,
     zplCodeTwo: PropTypes.string.isRequired,
     zplCodeThree: PropTypes.string.isRequired,
