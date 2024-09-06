@@ -1,30 +1,37 @@
-import qz from 'qz-tray';
+import qz from "qz-tray";
 
-const QzTray = async (zplCode) => {
-    console.log({ one: "one" });
+const QzTrayTwo = async (zplCode) => {
     try {
         if (!qz.websocket.isActive()) {
-            // Initialize qz-tray on-demand
             await qz.websocket.connect({ retries: 1, delay: 15 });
         }
 
-        // Find default printer
         const printer = await qz.printers.getDefault();
-        console.log({ printer });
         if (!printer) {
-            throw new Error('No default printer found');
+            throw new Error("No default printer found");
         }
 
-        // Set up configuration with UTF-8 encoding
-        const config = qz.configs.create(printer, { encoding: 'UTF-8' });
+        const config = qz.configs.create(printer, { encoding: "UTF-8" });
 
-        // Print the ZPL code to the selected printer
-        await qz.print(config, [{ type: 'raw', format: 'plain', data: zplCode }]);
+        // Check if the printer is available
+        const printerList = await qz.printers.find();
+        if (!printerList.find((p) => p.name === printer.name)) {
+            throw new Error("Selected printer not found");
+        }
 
-        console.log('Label printed successfully');
+        // Prepare the print job
+        const data = [{ type: "raw", format: "plain", data: zplCode }];
+
+        // Print the ZPL code
+        await qz.print(config, data);
+        console.log("Label printed successfully");
     } catch (error) {
-        console.error('Error printing label:', error);
+        console.error("Error printing label:", error);
+    } finally {
+        if (qz.websocket.isActive()) {
+            await qz.websocket.disconnect();
+        }
     }
 };
 
-export default QzTray;
+export default QzTrayTwo;

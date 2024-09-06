@@ -1,26 +1,20 @@
 import PropTypes from 'prop-types';
-import { Button, Switcher } from '@/components';
-import { qzTray, qzTrayTwo } from '@/utils';
-import { useState } from 'react';
+import { Button } from '@/components';
+import { QzTray } from '@/utils';
 
 function NewWay({ forImage, zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
-    const [isOldWay, setIsOldWay] = useState(true);
-    const handleSwitcher = () => setIsOldWay(!isOldWay);
 
 
     const _printByTheNewWay = async (zplCode) => {
-        if (isOldWay) {
-            await qzTray(zplCode);
-        } else {
-            await qzTrayTwo(zplCode);
-        }
+
+        await QzTray(zplCode);
+
     };
 
 
 
     return (
         <div className='pt-10'>
-            <Switcher label={isOldWay ? 'Version one' : 'Version two'} checked={isOldWay} onChange={handleSwitcher} />
 
 
             <div className='flex items-center justify-start gap-4 mt-8'>

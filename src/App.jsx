@@ -40,7 +40,7 @@ const zplCodeFour = `^XA
 
 const App = () => {
 
-  const [isOldWay, setIsOldWay] = useState(true);
+  const [isOldWay, setIsOldWay] = useState(false);
   const handleSwitcher = () => setIsOldWay(!isOldWay);
 
   return (
