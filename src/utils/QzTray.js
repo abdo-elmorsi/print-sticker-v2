@@ -2,21 +2,33 @@ import qz from "qz-tray";
 
 const QzTrayTwo = async (zplCode) => {
     try {
+        // Connect to QZ Tray
         if (!qz.websocket.isActive()) {
             await qz.websocket.connect({ retries: 1, delay: 15 });
         }
 
         const printer = await qz.printers.getDefault();
+        console.log("Default Printer:", printer);
         if (!printer) {
             throw new Error("No default printer found");
         }
 
         const config = qz.configs.create(printer, { encoding: "UTF-8" });
 
-        // Check if the printer is available
+        // Validate printer availability
         const printerList = await qz.printers.find();
-        if (!printerList.find((p) => p.name === printer.name)) {
+        console.log("Available Printers:", printerList);
+        if (
+            !printerList ||
+            printerList.length === 0 ||
+            !printerList.find((p) => p.name === printer.name)
+        ) {
             throw new Error("Selected printer not found");
+        }
+
+        // Validate ZPL code
+        if (!zplCode || typeof zplCode !== "string") {
+            throw new Error("Invalid ZPL code provided");
         }
 
         // Prepare the print job
