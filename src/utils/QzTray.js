@@ -81,7 +81,7 @@ class QzTrayPrinter {
                 console.log("Connected to QZ Tray");
             }
 
-            const printer = await this.findPrinter("ZDesigner");
+            const printer = await this.findPrinter("ZDesigner GK420t");
             if (!printer) {
                 this.logError("No printers found.");
                 return;
