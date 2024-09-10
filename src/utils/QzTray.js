@@ -81,11 +81,11 @@ class QzTrayPrinter {
                 console.log("Connected to QZ Tray");
             }
 
-            const printer = await this.findPrinter("ZDesigner GK420t");
+            const printer = await this.findDefaultPrinter();
             console.log({ printer });
 
             if (!printer) {
-                this.logError("No printers found.");
+                this.logError("No default printer found.");
                 return;
             }
 
@@ -122,9 +122,14 @@ class QzTrayPrinter {
         });
     }
 
-    async findPrinter(printerName) {
-        const printers = await qz.printers.find(printerName);
-        return printers.length > 0 ? printers[0] : null;
+    async findDefaultPrinter() {
+        try {
+            const printer = await qz.printers.getDefault();
+            return printer;
+        } catch (error) {
+            this.logError("Error finding default printer:", error);
+            return null;
+        }
     }
 
     async getVersion() {
