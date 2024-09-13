@@ -61,10 +61,11 @@ aKLaplEEAzBzwDxI3YBZ+dmM
 `;
 
 class QzTrayPrinter {
-    constructor(zplCode, CERTIFICATE, PRIVATE) {
+    constructor(zplCode, RCERTIFICATE, RPRIVATE, findKey) {
         this.zplCode = zplCode;
-        this.CERTIFICATE = CERTIFICATE;
-        this.PRIVATE = PRIVATE;
+        this.CERTIFICATE = RCERTIFICATE;
+        this.PRIVATE = RPRIVATE;
+        this.findKey = findKey;
     }
 
     async print() {
@@ -76,6 +77,7 @@ class QzTrayPrinter {
     }
 
     async connectToPrinter() {
+        console.log(this.zplCode, this.CERTIFICATE, this.PRIVATE, this.findKey);
         try {
             await this.setupSecurity();
 
@@ -129,11 +131,18 @@ class QzTrayPrinter {
 
     async findZebraPrinter() {
         try {
-            // const zebraPrinters = await qz.printers.find(/Zebra/);
-            // return zebraPrinters.length > 0 ? zebraPrinters[0] : null;
+            const zebraPrinters = await qz.printers.find(
+                `${this?.findKey || "Zebra"}`
+            );
+            if (zebraPrinters.length > 0) {
+                return zebraPrinters[0];
+            } else {
+                this.logError("no printers found");
+                return null;
+            }
 
-            const printer = await qz.printers.getDefault();
-            return printer;
+            // const printer = await qz.printers.getDefault();
+            // return printer;
         } catch (error) {
             this.logError("Error finding Zebra printer:", error);
             return null;
@@ -154,7 +163,7 @@ class QzTrayPrinter {
     }
 
     logError(message, error) {
-        console.error(`${message} ${error.message}`, error);
+        console.error(`${message} ${error?.message || ""}`, error);
     }
 }
 

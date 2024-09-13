@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import { Button } from '@/components';
+import { Button, Switcher } from '@/components';
 import { useSavedState } from '@/hooks';
 
 import QzTrayPrinter from '../utils/QzTray';
+import { useState } from 'react';
 
 function NewWay({ forImage, zplCodeOne, zplCodeTwo, zplCodeThree, zplCodeFour }) {
     const [CERTIFICATE, setCERTIFICATE] = useSavedState(`-----BEGIN CERTIFICATE-----
@@ -58,15 +59,19 @@ x+Q2iefR7/H3oXgSkI+UkzmvoonU4UIiMmhq15dTlUvkquJPRe88N2y7Apwoq9zg
 aKLaplEEAzBzwDxI3YBZ+dmM
 -----END PRIVATE KEY-----`, 'PRIVATE')
 
+    const [findKey, setFindKey] = useState("Zebra");
+
+    const [isDefault, setIsDefault] = useState(false);
+    const handleSwitcher = () => setIsDefault(!isDefault);
+
     const printLabel = async (zplCode) => {
         try {
-            const printer = new QzTrayPrinter(zplCode, CERTIFICATE, PRIVATE);
+            const printer = new QzTrayPrinter(zplCode, CERTIFICATE, PRIVATE, findKey);
             await printer.print();
         } catch (error) {
             console.error("Print error:", error);
         }
     };
-
 
 
 
@@ -80,20 +85,27 @@ aKLaplEEAzBzwDxI3YBZ+dmM
                 <label>PRIVATE KEY</label>
                 <textarea value={PRIVATE} onChange={(e) => setPRIVATE(e.target.value)} className='w-full rounded-sm border-2 border-gray-300' />
             </div>
+
+            <Switcher label={isDefault ? 'Default' : 'find by'} checked={isDefault} onChange={handleSwitcher} />
+            <div className='mb-2'>
+                <label>Find Key</label>
+                <input disabled={isDefault} value={findKey} onChange={(e) => setFindKey(e.target.value)} className=' disabled:bg-gray-500 w-full rounded-sm border-2 border-gray-300' />
+            </div>
+
             <div className='flex items-center justify-start gap-4 mt-8'>
-                <Button onClick={() => printLabel(forImage)} className="text-white bg-green-500 hover:bg-green-600">
+                <Button disabled={!isDefault && !findKey} onClick={() => printLabel(forImage)} className=" disabled:cursor-not-allowed text-white bg-green-500 hover:bg-green-600">
                     Image
                 </Button>
-                <Button onClick={() => printLabel(zplCodeOne)} className="text-white bg-green-500 hover:bg-green-600">
+                <Button disabled={!isDefault && !findKey} onClick={() => printLabel(zplCodeOne)} className=" disabled:cursor-not-allowed text-white bg-green-500 hover:bg-green-600">
                     Print 1
                 </Button>
-                <Button onClick={() => printLabel(zplCodeTwo)} className="text-white bg-green-500 hover:bg-green-600">
+                <Button disabled={!isDefault && !findKey} onClick={() => printLabel(zplCodeTwo)} className=" disabled:cursor-not-allowed text-white bg-green-500 hover:bg-green-600">
                     Print 2
                 </Button>
-                <Button onClick={() => printLabel(zplCodeThree)} className="text-white bg-green-500 hover:bg-green-600">
+                <Button disabled={!isDefault && !findKey} onClick={() => printLabel(zplCodeThree)} className=" disabled:cursor-not-allowed text-white bg-green-500 hover:bg-green-600">
                     Print 3
                 </Button>
-                <Button onClick={() => printLabel(zplCodeFour)} className="text-white bg-green-500 hover:bg-green-600">
+                <Button disabled={!isDefault && !findKey} onClick={() => printLabel(zplCodeFour)} className=" disabled:cursor-not-allowed text-white bg-green-500 hover:bg-green-600">
                     Print 4
                 </Button>
 
